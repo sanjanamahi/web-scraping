@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Trends</title>
+    <script>
+        async function runScript() {
+            const response = await fetch('/run-script');
+            const result = await response.json();
+            document.getElementById('result').innerText = result.result;
+
+            const trendsResponse = await fetch('/get-latest-trends');
+            const trends = await trendsResponse.json();
+            document.getElementById('trends').innerText = JSON.stringify(trends, null, 2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Twitter Trends</h1>
+    <button onclick="runScript()">Click here to run the script</button>
+    <div id="result"></div>
+    <pre id="trends"></pre>
+</body>
+</html>
